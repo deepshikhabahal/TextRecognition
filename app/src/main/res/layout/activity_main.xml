@@ -28,7 +28,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#6EB32A"
+                app:cardBackgroundColor="#D4E157"
                 app:cardCornerRadius="2dp"
                 app:cardElevation="0dp"
                 app:cardUseCompatPadding="true">
@@ -53,9 +53,11 @@
                         android:autoLink="all"
                         android:ems="10"
                         android:hint=""
-                        android:padding="5dp"
                         android:inputType="textMultiLine"
-                        android:textColor="#000" />
+                        android:minHeight="48dp"
+                        android:padding="5dp"
+                        android:textColor="#000"
+                        tools:ignore="SpeakableTextPresentCheck" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

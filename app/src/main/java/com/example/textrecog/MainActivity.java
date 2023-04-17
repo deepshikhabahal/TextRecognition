@@ -1,13 +1,5 @@
 package com.example.textrecog;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -19,7 +11,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Html;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.SparseArray;
@@ -29,6 +20,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.text.TextBlock;
@@ -44,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int STORAGE_REQUEST_CODE = 200;
     private static final int IMAGE_GALLERY_CODE = 300;
     private static final int IMAGE_CAMERA_CODE = 400;
-    String cameraPermission[];
-    String storagePermission[];
+    String[] cameraPermission;
+    String[] storagePermission;
     Uri image_uri;
 
     @Override
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Text Recognition");
         actionBar.setSubtitle("Click on Image button");
-        actionBar.setTitle(Html.fromHtml("<font color='#6EB32A'>Text Recognition</font>"));
+        actionBar.setTitle(Html.fromHtml("<font color='#ffffff'>Text Recognition</font>"));
         editText = findViewById(R.id.editText);
         image = findViewById(R.id.image);
         textView=findViewById(R.id.textView);
@@ -87,9 +86,9 @@ public class MainActivity extends AppCompatActivity {
     private void showImageDialog() {
 
         String[] items = {"Camera", "Albums"};
-        AlertDialog.Builder alertdialogbox = new AlertDialog.Builder(this);
-        alertdialogbox.setTitle("Select");
-        alertdialogbox.setItems(items, new DialogInterface.OnClickListener() {
+        AlertDialog.Builder alertDialogBox = new AlertDialog.Builder(this);
+        alertDialogBox.setTitle("Select");
+        alertDialogBox.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 if (i == 0) {
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        alertdialogbox.create().show();
+        alertDialogBox.create().show();
     }
 
     private void Gallery() {
@@ -164,8 +163,8 @@ public class MainActivity extends AppCompatActivity {
         }
         if (requestCode == STORAGE_REQUEST_CODE) {
             if (grantResults.length > 0) {
-                boolean writestorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                if (writestorageAccepted) {
+                boolean writeStorageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                if (writeStorageAccepted) {
                     Gallery();
                 } else {
                     Toast.makeText(this, "NOT ALLOWED", Toast.LENGTH_SHORT).show();

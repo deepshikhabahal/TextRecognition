@@ -6,5 +6,5 @@
         android:id="@+id/add_image"
         app:showAsAction="always"
         android:title="Add Image"
-        android:icon="@drawable/gallery2"/>
+        android:icon="@drawable/photo"/>
 </menu>
